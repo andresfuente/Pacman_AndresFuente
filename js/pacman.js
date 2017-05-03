@@ -1596,7 +1596,16 @@ var GF = function () {
             $('p.score').html(this.points);
             if (this.points > this.highscore) {
                 this.highscore = this.points;
-                $('p.highscore').html(this.points);
+                var localpoints = localStorage.getItem("high"); 
+                if (this.highscore > localpoints){
+                    $('p.highscore').html(this.points);
+                    localStorage.setItem("high", this.points); 
+                }
+                else{
+                    $('p.highscore').html(localpoints);
+                }
+                
+                
             }
         },
 
@@ -1980,6 +1989,9 @@ var GF = function () {
                     }
                     else{
                         thisGame.setMode(thisGame.GAME_OVER);
+                        ctx.fillStyle = 'red';
+                        ctx.font = "20px Arial";
+                        ctx.fillText("Pulsar F5 para reiniciar",(w/2)-100,h/2+100);
                     }
 
                 }
@@ -1993,6 +2005,9 @@ var GF = function () {
             ctx.fillStyle = 'green';
             ctx.font = "35px Arial";
             ctx.fillText("¡YOU WIN!",(w/2)-75,h/2);
+            ctx.fillStyle = 'green';
+            ctx.font = "20px Arial";
+            ctx.fillText("Pulsar F5 para reiniciar",(w/2)-100,h/2+100);
             if(thisGame.modeTimer == 120){
                 endGame();
                 restart();
@@ -2168,7 +2183,8 @@ var GF = function () {
 
 
     var start = function () {
-
+        var localpoints = localStorage.getItem("high"); 
+        $('p.highscore').html(localpoints);
         loadAssets();
         loadPreferences();
 
