@@ -1,5 +1,5 @@
 # Pacman_AndresFuente
-Entrega Final Pacman
+URL para poder jugar al juego completo: https://andresfuente.github.io/
 
 Tareas Opcionales Implementadas:
 
